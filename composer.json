@@ -11,5 +11,7 @@
             "email": "amandafaleiro200@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "robmorgan/phinx": "^0.15.3"
+    }
 }

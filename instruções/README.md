@@ -28,6 +28,8 @@ Executar as migrations.
 
 Executar o rollback na última migration - reverter as alterações realizadas.
 ### vendor\bin\phinx rollback
+Executar o rollback nas migrations - reverter todas.
+### vendor/bin/phinx rollback -t 0
 
 Criar o diretório para seed
 ### mkdir db\seeds\
