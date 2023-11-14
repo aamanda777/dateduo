@@ -1,148 +1,83 @@
-<!-- Sugestão de Date com escolha de filme usando API do TMDb -->
+<?php
+// Supondo que você validou o login com sucesso e obteve o nome dos membros do casal
+$nomeMembro1 = "NomeMembro1";  // Substitua pelo nome real do membro 1
+$nomeMembro2 = "NomeMembro2";  // Substitua pelo nome real do membro 2
+
+// Inicie a sessão
+session_start();
+
+// Defina as variáveis de sessão
+$_SESSION['nome_membro_1'] = $nomeMembro1;
+$_SESSION['nome_membro_2'] = $nomeMembro2;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sugestão de Date</title>
-    <style>
-        .error {
-            color: red;
-        }
-
-        .column {
-            float: left;
-            width: 50%;
-            padding: 10px;
-        }
-
-        /* Clearfix para evitar que as colunas afetem outros elementos fora das colunas */
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    </style>
+    <title>Gerador de Date</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="js/date.js"></script>
 </head>
 
-<body>
-    <h2>Sugestão de Date</h2>
+<body class="bg-gray-100">
 
-    <!-- Formulário para escolher comidas e bebidas -->
-    <div class="column">
-        <h3>Escolha das Comidas e Bebidas</h3>
+    <div class="container mx-auto p-8">
 
-        <!-- Formulário para o primeiro membro do casal -->
-        <form id="comidaBebidaFormMembro1">
-            <label for="entradaMembro1">Entrada:</label>
-            <input type="text" name="entradaMembro1" id="entradaMembro1" required><br>
+        <h2 class="text-3xl font-semibold mb-8">Gerador de Date</h2>
 
-            <label for="pratoPrincipalMembro1">Prato Principal:</label>
-            <input type="text" name="pratoPrincipalMembro1" id="pratoPrincipalMembro1" required><br>
+        <div class="flex space-x-8">
 
-            <label for="sobremesaMembro1">Sobremesa:</label>
-            <input type="text" name="sobremesaMembro1" id="sobremesaMembro1" required><br>
+            <!-- Formulário para escolher comidas e bebidas -->
+            <div class="w-1/2">
+                <h3 class="text-xl font-semibold mb-4"><?php echo $_SESSION['nome_membro_1']; ?>, escolha seu cardápio:</h3>
 
-            <label for="bebidaMembro1">Bebida:</label>
-            <input type="text" name="bebidaMembro1" id="bebidaMembro1" required><br>
-        </form>
+                <form id="comidaBebidaFormMembro1">
+                    <label for="entradaMembro1" class="block mb-2">Entrada:</label>
+                    <input type="text" name="entradaMembro1" id="entradaMembro1" placeholder="Entrada" class="mb-4 p-2 border rounded" required>
 
-        <!-- Formulário para o segundo membro do casal -->
-        <form id="comidaBebidaFormMembro2">
-            <label for="entradaMembro2">Entrada:</label>
-            <input type="text" name="entradaMembro2" id="entradaMembro2" required><br>
+                    <label for="pratoPrincipalMembro1" class="block mb-2">Prato Principal:</label>
+                    <input type="text" name="pratoPrincipalMembro1" id="pratoPrincipalMembro1" placeholder="Prato Principal" class="mb-4 p-2 border rounded" required>
 
-            <label for="pratoPrincipalMembro2">Prato Principal:</label>
-            <input type="text" name="pratoPrincipalMembro2" id="pratoPrincipalMembro2" required><br>
+                    <label for="sobremesaMembro1" class="block mb-2">Sobremesa:</label>
+                    <input type="text" name="sobremesaMembro1" id="sobremesaMembro1" placeholder="Sobremesa" class="mb-4 p-2 border rounded" required>
 
-            <label for="sobremesaMembro2">Sobremesa:</label>
-            <input type="text" name="sobremesaMembro2" id="sobremesaMembro2" required><br>
+                    <label for="bebidaMembro1" class="block mb-2">Bebida:</label>
+                    <input type="text" name="bebidaMembro1" id="bebidaMembro1" placeholder="Bebida" class="mb-4 p-2 border rounded" required>
+                </form>
 
-            <label for="bebidaMembro2">Bebida:</label>
-            <input type="text" name="bebidaMembro2" id="bebidaMembro2" required><br>
-        </form>
+                <h3 class="text-xl font-semibold mb-4"><?php echo $_SESSION['nome_membro_2']; ?>, escolha seu cardápio:</h3>
+
+                <form id="comidaBebidaFormMembro2">
+                    <label for="entradaMembro2" class="block mb-2">Entrada:</label>
+                    <input type="text" name="entradaMembro2" id="entradaMembro2" placeholder="Entrada" class="mb-4 p-2 border rounded" required>
+
+                    <label for="pratoPrincipalMembro2" class="block mb-2">Prato Principal:</label>
+                    <input type="text" name="pratoPrincipalMembro2" id="pratoPrincipalMembro2" placeholder="Prato Principal" class="mb-4 p-2 border rounded" required>
+
+                    <label for="sobremesaMembro2" class="block mb-2">Sobremesa:</label>
+                    <input type="text" name="sobremesaMembro2" id="sobremesaMembro2" placeholder="Sobremesa" class="mb-4 p-2 border rounded" required>
+
+                    <label for="bebidaMembro2" class="block mb-2">Bebida:</label>
+                    <input type="text" name="bebidaMembro2" id="bebidaMembro2" placeholder="Bebida" class="mb-4 p-2 border rounded" required>
+                </form>
+            </div>
+
+            <!-- Formulário para escolher o filme -->
+            <div class="w-1/2">
+                <!-- Adicione o formulário do filme aqui... -->
+            </div>
+
+        </div>
+
+        <button type="button" onclick="realizarSorteio()" class="mt-4 p-2 bg-blue-500 text-white rounded">Sortear</button>
+
     </div>
 
-    <!-- Formulário para escolher o filme -->
-    <div class="column">
-        <h3>Escolha do Filme</h3>
-
-        <label for="generoFilme">Escolha um Gênero:</label>
-        <select id="generoFilme" name="generoFilme" onchange="carregarFilmesPorGenero()">
-            <option value="">Todos os Gêneros</option>
-            <option value="28">Ação</option>
-            <option value="35">Comédia</option>
-            <option value="18">Drama</option>
-            <!-- Adicione mais gêneros conforme necessário -->
-        </select>
-
-        <!-- Lista de filmes baseada no gênero selecionado -->
-        <label for="filmeMembro1">Escolha um Filme (Membro 1):</label>
-        <select id="filmeMembro1" name="filmeMembro1" required>
-            <!-- Opções de filmes serão inseridas dinamicamente aqui -->
-        </select>
-
-        <!-- Lista de filmes baseada no gênero selecionado -->
-        <label for="filmeMembro2">Escolha um Filme (Membro 2):</label>
-        <select id="filmeMembro2" name="filmeMembro2" required>
-            <!-- Opções de filmes serão inseridas dinamicamente aqui -->
-        </select>
-
-        <button type="button" onclick="realizarSorteio()">Sortear</button>
-    </div>
-
-    <div class="clearfix"></div>
-
-    <script>
-        function carregarFilmesPorGenero() {
-            // Obter o valor selecionado no dropdown de gênero
-            var generoSelecionado = $("#generoFilme").val();
-
-            // Limpar as opções existentes nos dropdowns de filmes
-            $("#filmeMembro1").empty();
-            $("#filmeMembro2").empty();
-
-            // Verificar se foi selecionado um gênero
-            if (generoSelecionado) {
-                // Fazer uma chamada à API do TMDb para obter filmes do gênero selecionado
-                $.ajax({
-                    url: 'https://api.themoviedb.org/3/discover/movie',
-                    dataType: 'json',
-                    data: {
-                        api_key: '3e8cfb256231d7deb8374d13fdd167af',
-                        language: 'pt-BR',
-                        with_genres: generoSelecionado,
-                        page: 1
-                    },
-                    success: function (result) {
-                        // Preencher os dropdowns de filmes com os resultados da API
-                        var filmesPorGenero = result.results;
-                        preencherDropdownFilmes(filmesPorGenero);
-                    },
-                    error: function (error) {
-                        console.log('Erro ao obter lista de filmes por gênero:', error);
-                    }
-                });
-            }
-        }
-
-        function preencherDropdownFilmes(filmes) {
-            // Adicionar a opção padrão
-            $("#filmeMembro1, #filmeMembro2").append("<option value=''>Escolha um Filme</option>");
-
-            // Adicionar as opções de filmes
-            for (var i = 0; i < filmes.length; i++) {
-                $("#filmeMembro1, #filmeMembro2").append("<option value='" + filmes[i].title + "'>" + filmes[i].title + "</option>");
-            }
-        }
-
-        function realizarSorteio() {
-            alert("Sortear!");
-            // Aqui você pode adicionar a lógica para realizar o sorteio com as escolhas dos dois membros do casal
-        }
-    </script>
 </body>
 
 </html>

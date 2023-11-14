@@ -1,6 +1,8 @@
 <?php
 // cadastro.php
 
+session_start(); // Inicie a sessão se ainda não estiver iniciada
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Processar o formulário de cadastro
     $nomeMembro1 = $_POST['nome_membro_1'];
@@ -63,6 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result) {
         // Cadastro realizado com sucesso, redirecionar para a página de login
+
+        // Supondo que você tenha uma variável de sessão para armazenar o nome do usuário
+        $_SESSION['nome_membro_1'] = $nomeMembro1;
+        $_SESSION['nome_membro_2'] = $nomeMembro2;
+
         header("Location: login.html");
         exit;
     } else {

@@ -22,26 +22,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-
-        // Debug: Imprimir a senha armazenada no banco de dados
-        echo 'Hash do Banco de Dados: ' . $row['senha'] . '<br>';
-
-        if (password_verify($senha, $row['senha'])) {
-            // Debug: Imprimir a senha recebida do formulário
-            echo 'Senha Recebida do Formulário: ' . $senha . '<br>';
-
-            // Credenciais corretas, redirecionar para a página date.html
-            header("Location: date.html");
-            exit;
+    
+            if (password_verify($senha, $row['senha'])) {
+                // Credenciais corretas, armazenar informações do usuário na sessão
+                $_SESSION['usuario'] = $row['usuario'];
+                $_SESSION['nome_membro_1'] = $row['nome_membro_1'];
+                $_SESSION['nome_membro_2'] = $row['nome_membro_2'];
+    
+                // Redirecionar para a página date.html
+                header("Location: date.html");
+                exit;
+            } else {
+                echo "Senha incorreta. Por favor, tente novamente.";
+            }
         } else {
-            echo "Senha incorreta. Por favor, tente novamente.";
+            echo "Usuário não encontrado. Por favor, verifique suas credenciais.";
         }
-    } else {
-        echo "Usuário não encontrado. Por favor, verifique suas credenciais.";
+    
+        // Fechar a conexão
+        $stmt->close();
+        $conn->close();
     }
-
-    // Fechar a conexão
-    $stmt->close();
-    $conn->close();
-}
-?>
+    ?>
