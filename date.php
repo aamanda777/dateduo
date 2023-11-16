@@ -7,7 +7,6 @@ if (!isset($_SESSION['nome_membro_1'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,7 @@ if (!isset($_SESSION['nome_membro_1'])) {
     <title>Gerador de Date</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="js/date.js"></script>
+    <script src="js\date.js"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -26,59 +25,53 @@ if (!isset($_SESSION['nome_membro_1'])) {
 
         <h2 class="text-3xl font-semibold mb-8">Gerador de Date</h2>
 
-        <div class="space-x-8">
+        <form id="comidaBebidaForm" action="processa_date.php" method="post">
+            <div class="grid grid-cols-2 gap-8">
+                <!-- Coluna para membro 1 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4"><?php echo $_SESSION['nome_membro_1']; ?>, escolha seu cardápio:</h3>
 
-            <!-- Formulário para escolher comidas e bebidas -->
-            <div class="w-1/2 ">
-                <h3 class="text-xl font-semibold mb-4">
-                    <?php echo $_SESSION['nome_membro_1']; ?>, escolha seu cardápio:
-                </h3>
-
-                <form id="comidaBebidaFormMembro1">
                     <label for="entradaMembro1" class="block mb-2">Entrada:</label>
-                    <input type="text" name="entradaMembro1" id="entradaMembro1" placeholder="Entrada"
+                    <input type="text" name="entradaMembro1" id="entradaMembro1" placeholder="Escolha a Entrada"
                         class="mb-4 p-2 border rounded" required>
 
                     <label for="pratoPrincipalMembro1" class="block mb-2">Prato Principal:</label>
                     <input type="text" name="pratoPrincipalMembro1" id="pratoPrincipalMembro1"
-                        placeholder="Prato Principal" class="mb-4 p-2 border rounded" required>
+                        placeholder="Escolha o Prato Principal" class="mb-4 p-2 border rounded" required>
 
                     <label for="sobremesaMembro1" class="block mb-2">Sobremesa:</label>
-                    <input type="text" name="sobremesaMembro1" id="sobremesaMembro1" placeholder="Sobremesa"
+                    <input type="text" name="sobremesaMembro1" id="sobremesaMembro1" placeholder="Escolha a Sobremesa"
                         class="mb-4 p-2 border rounded" required>
 
                     <label for="bebidaMembro1" class="block mb-2">Bebida:</label>
-                    <input type="text" name="bebidaMembro1" id="bebidaMembro1" placeholder="Bebida"
+                    <input type="text" name="bebidaMembro1" id="bebidaMembro1" placeholder="Escolha a Bebida"
                         class="mb-4 p-2 border rounded" required>
-                </form>
+                </div>
 
-                <h3 class="text-xl font-semibold mb-4">
-                    <?php echo $_SESSION['nome_membro_2']; ?>, escolha seu cardápio:
-                </h3>
+                <!-- Coluna para membro 2 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4"><?php echo $_SESSION['nome_membro_2']; ?>, escolha seu cardápio:</h3>
 
-                <form id="comidaBebidaFormMembro2">
                     <label for="entradaMembro2" class="block mb-2">Entrada:</label>
-                    <input type="text" name="entradaMembro2" id="entradaMembro2" placeholder="Entrada"
+                    <input type="text" name="entradaMembro2" id="entradaMembro2" placeholder="Escolha a Entrada"
                         class="mb-4 p-2 border rounded" required>
 
                     <label for="pratoPrincipalMembro2" class="block mb-2">Prato Principal:</label>
                     <input type="text" name="pratoPrincipalMembro2" id="pratoPrincipalMembro2"
-                        placeholder="Prato Principal" class="mb-4 p-2 border rounded" required>
+                        placeholder="Escolha o Prato Principal" class="mb-4 p-2 border rounded" required>
 
                     <label for="sobremesaMembro2" class="block mb-2">Sobremesa:</label>
-                    <input type="text" name="sobremesaMembro2" id="sobremesaMembro2" placeholder="Sobremesa"
+                    <input type="text" name="sobremesaMembro2" id="sobremesaMembro2" placeholder="Escolha a Sobremesa"
                         class="mb-4 p-2 border rounded" required>
 
                     <label for="bebidaMembro2" class="block mb-2">Bebida:</label>
-                    <input type="text" name="bebidaMembro2" id="bebidaMembro2" placeholder="Bebida"
+                    <input type="text" name="bebidaMembro2" id="bebidaMembro2" placeholder="Escolha a Bebida"
                         class="mb-4 p-2 border rounded" required>
-                </form>
+                </div>
             </div>
 
-        </div>
-
-        <button type="button" onclick="salvarEscolhasEAvancar()" class="mt-4 p-2 bg-blue-500 text-white rounded">Avançar</button>
-
+            <button type="submit" class="mt-4 p-2 bg-blue-500 text-white rounded" id="btnSubmit">Avançar</button>
+        </form>
 
     </div>
 

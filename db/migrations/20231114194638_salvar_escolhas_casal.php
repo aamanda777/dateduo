@@ -8,8 +8,7 @@ final class SalvarEscolhasCasal extends AbstractMigration
     public function change(): void
     {
         $tabela = $this->table('escolhas_casal');
-        $tabela->addColumn('id_casal', 'integer')
-            ->addColumn('entrada_membro_1', 'string')
+        $tabela->addColumn('entrada_membro_1', 'string')
             ->addColumn('prato_principal_membro_1', 'string')
             ->addColumn('sobremesa_membro_1', 'string')
             ->addColumn('bebida_membro_1', 'string')

@@ -1,5 +1,4 @@
 <?php
-
 use Phinx\Migration\AbstractMigration;
 
 class CriarTabelaCasais extends AbstractMigration
