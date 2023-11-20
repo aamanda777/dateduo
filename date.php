@@ -24,7 +24,7 @@ if (!isset($_SESSION['nome_membro_1'])) {
 <body class="min-h-screen flex items-center justify-center">
 
     <!-- Barra de navegação -->
-    <nav class="bg-red-500 text-white p-4 absolute top-0 left-0 right-0">
+    <nav class="bg-red-700 text-white p-4 absolute top-0 left-0 right-0">
         <div class="container mx-auto flex justify-between items-center">
             <div class="h-16">
                 <!-- Logo do site -->

@@ -1,10 +1,9 @@
 <?php
-
 require 'vendor/autoload.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
-//sorteio.php
+
 // Configurações do banco de dados
 $host = "localhost";
 $usuario_bd = "root";
@@ -22,7 +21,7 @@ if ($conn->connect_error) {
 // Recuperar os dados do último sorteio
 $resultados = $conn->query("SELECT * FROM escolhas_casal ORDER BY criado_em DESC LIMIT 1");
 
-if ($resultados->num_rows > 0) {
+if ($resultados && $resultados->num_rows > 0) {
     $row = $resultados->fetch_assoc();
 
     $entradaSorteio = sortear($row['entrada_membro_1'], $row['entrada_membro_2']);
@@ -36,7 +35,6 @@ if ($resultados->num_rows > 0) {
     $sobremesaSorteio = "N/A";
     $bebidaSorteio = "N/A";
 }
-
 function sortear($opcao1, $opcao2)
 {
     $sorteio = rand(0, 1);
@@ -51,89 +49,90 @@ function sortear($opcao1, $opcao2)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado do Sorteio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sorteio.js">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Junge&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body class="bg-gray-100">
 
     <!-- Barra de Navegação -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">DateDuo</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
+    <nav class="bg-red-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="h-16">
+                <!-- Logo do site -->
+                <img src="img/logo.png" alt="Logo" class="h-full w-auto">
+            </div>
+            <div>
+                <!-- Link de Logout -->
+                <a href="logout.php" class="hover:text-white"><i class="fas fa-sign-out-alt"></i> Sair</a>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container mx-auto mt-8 p-8 max-w-2xl text-center">
 
-        <h2 class="text-center mb-4">Resultado do Sorteio</h2>
+        <h2 class="text-4xl font-semibold mb-9 font">Resultado do Sorteio</h2>
 
-        <div class="row">
+        <div class="mb-8">
             <!-- Entrada -->
-            <div class="col-md-6 mb-4">
-                <h3 class="text-center mb-3">Entrada:</h3>
-                <p class="lead text-center">
+            <div class="flex items-center mb-9">
+                <span class="text-red-600 font-semibold text-xl"> <i
+                        class="fas fa-seedling text-red-800 mr-2"></i>Entrada:</span>
+                <p class="ml-2">
                     <?php echo $entradaSorteio; ?>
                 </p>
             </div>
 
             <!-- Prato Principal -->
-            <div class="col-md-6 mb-4">
-                <h3 class="text-center mb-3">Prato Principal:</h3>
-                <p class="lead text-center">
+            <div class="flex items-center mb-9">
+                <span class="text-red-600 font-semibold text-xl"><i class="fas fa-utensils text-red-800 mr-2"></i>Prato
+                    Principal:</span>
+                <p class="ml-2">
                     <?php echo $pratoPrincipalSorteio; ?>
                 </p>
             </div>
 
             <!-- Sobremesa -->
-            <div class="col-md-6 mb-4">
-                <h3 class="text-center mb-3">Sobremesa:</h3>
-                <p class="lead text-center">
+            <div class="flex items-center mb-9">
+                <span class="text-red-600 font-semibold text-xl"> <i
+                        class="fas fa-ice-cream text-red-800 mr-2"></i>Sobremesa:</span>
+                <p class="ml-2">
                     <?php echo $sobremesaSorteio; ?>
                 </p>
             </div>
 
             <!-- Bebida -->
-            <div class="col-md-6 mb-4">
-                <h3 class="text-center mb-3">Bebida:</h3>
-                <p class="lead text-center">
+            <div class="flex items-center mb-8">
+                <span class="text-red-600 font-semibold text-xl"> <i
+                        class="fa-solid fa-champagne-glasses mr-2 text-red-800"></i>Bebida:</span>
+                <p class="ml-2">
                     <?php echo $bebidaSorteio; ?>
                 </p>
             </div>
         </div>
 
-    </div>
-    <div class="text-center mt-4">
-        <a href="#" id="compartilharWhatsapp" class="btn btn-success">
-            Compartilhar via WhatsApp
-        </a>
-    </div>
 
-    <script>
-    $(document).ready(function () {
-        $('#compartilharWhatsapp').click(function () {
-            // Abre a página gerar_pdf.php em uma nova janela
-            window.open('gerar_pdf.php', '_blank');
-        });
-    });
-</script>
+        <!-- Bolinha com ícone do WhatsApp -->
+        <div class="absolute right-8 bottom-8">
+            <a href="#" id="compartilharWhatsapp"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold p-4 rounded-full inline-flex items-center justify-center">
+                <i class="fab fa-whatsapp text-3xl"></i>
+            </a>
+        </div>
+
+    </div>
 
 </body>
 
 </html>
+
+
+
 
 
 
