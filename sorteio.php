@@ -40,6 +40,7 @@ function sortear($opcao1, $opcao2)
     $sorteio = rand(0, 1);
     return $sorteio == 0 ? $opcao1 : $opcao2;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +50,6 @@ function sortear($opcao1, $opcao2)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado do Sorteio</title>
-    <script src="js/sorteio.js">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -124,8 +124,15 @@ function sortear($opcao1, $opcao2)
                 <i class="fab fa-whatsapp text-3xl"></i>
             </a>
         </div>
-
     </div>
+    <script>
+        document.getElementById('compartilharWhatsapp').addEventListener('click', function () {
+            var mensagem = encodeURIComponent("Hoje o cardápio de  será:\n\nEntrada: <?php echo $entradaSorteio; ?>\nPrato Principal: <?php echo $pratoPrincipalSorteio; ?>\nSobremesa: <?php echo $sobremesaSorteio; ?>\nBebida: <?php echo $bebidaSorteio; ?>\n\nData: <?php echo date('d/m/Y'); ?>\n\nFeito com: DateDuo");
+            window.open('https://wa.me/?text=' + mensagem, '_blank');
+        });
+    </script>
+
+
 
 </body>
 
