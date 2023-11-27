@@ -127,7 +127,7 @@ function sortear($opcao1, $opcao2)
     </div>
     <script>
         document.getElementById('compartilharWhatsapp').addEventListener('click', function () {
-            var mensagem = encodeURIComponent("Hoje o cardápio de  será:\n\nEntrada: <?php echo $entradaSorteio; ?>\nPrato Principal: <?php echo $pratoPrincipalSorteio; ?>\nSobremesa: <?php echo $sobremesaSorteio; ?>\nBebida: <?php echo $bebidaSorteio; ?>\n\nData: <?php echo date('d/m/Y'); ?>\n\nFeito com: DateDuo");
+            var mensagem = encodeURIComponent("Hoje o cardápio será:\n\nEntrada: <?php echo $entradaSorteio; ?>\nPrato Principal: <?php echo $pratoPrincipalSorteio; ?>\nSobremesa: <?php echo $sobremesaSorteio; ?>\nBebida: <?php echo $bebidaSorteio; ?>\n\nData: <?php echo date('d/m/Y'); ?>\n\nFeito com: DateDuo\nBom Apetite! ❤️");
             window.open('https://wa.me/?text=' + mensagem, '_blank');
         });
     </script>
