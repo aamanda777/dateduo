@@ -5,6 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+      * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url("img/ver1.jpg");
+            background-size: cover;
+            background-color: black;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h2 {
+            color: white;
+            font-size: 30px;
+            padding: 10px 0;
+            text-align: center;
+        }
+        form {
+            text-align: center;
+        }
+        input {
+            height: 40px;
+            width: 40%;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+            color: black;
+            padding: 0 0 0 45px;
+            background: white;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 40%;
+            height: 40px;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
         .error {
             color: red;
         }
@@ -13,11 +60,11 @@
 <body>
     <h2>Login</h2>
     <form action="processa_login.php" method="POST" id="loginForm" onsubmit="return validarFormulario()">
-        <label for="usuario">Usuário:</label>
-        <input type="text" name="usuario" id="usuario" required><br>
+        <label for="usuario"></label>
+        <input type="text" name="usuario" id="usuario" placeholder="Usuário" ><br><br>
 
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required><br>
+        <label for="senha"></label>
+        <input type="password" name="senha" id="senha" placeholder="Senha" required><br><br>
 
         <button type="submit">Entrar</button>
     </form>
